@@ -1,6 +1,6 @@
 {
-	"name" : "portalium/portalium-template",
-	"description" : "Module Template for Portalium",
+	"name" : "portalium/portalium-rbac",
+	"description" : "Module Rbac for Portalium",
 	"type" : "yii2-extension",
 	"license": "MIT",
 	"homepage" : "https://portalium.dev",
@@ -12,11 +12,11 @@
 		}
 	],
 	"support" : {
-		"issues" : "https://github.com/portalium/portalium-template/issues"
+		"issues" : "https://github.com/portalium/portalium-rbac/issues"
 	},
 	"autoload" : {
 		"psr-4" : {
-			"portalium\\template\\" : "src/"
+			"portalium\\rbac\\" : "src/"
 		}
 	}
 }

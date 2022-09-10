@@ -1,2 +1,2 @@
-# portalium-template
-Module Template for Portalium
+# portalium-rbac
+Module Rbac for Portalium
