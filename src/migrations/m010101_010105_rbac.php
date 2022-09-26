@@ -46,19 +46,25 @@ class m010101_010105_rbac extends Migration
         $auth->add($rbacWebPermissionViewPath);
         $auth->addChild($admin, $rbacWebPermissionViewPath);
 
+        $rbacWebRoleViewPath = $auth->createPermission('rbacWebRoleViewPath');
+        $rbacWebRoleViewPath->description = 'View role path';
+        $auth->add($rbacWebRoleViewPath);
+        $auth->addChild($admin, $rbacWebRoleViewPath);
+
     }
 
     public function down()
     {
         $auth = Yii::$app->authManager;
 
-        $auth->remove($auth->getPermission('rbacApiDefaultAssignmentView'));
-        $auth->remove($auth->getPermission('rbacApiDefaultAssignmentAssign'));
-        $auth->remove($auth->getPermission('rbacApiDefaultAssignmentRevoke'));
-        $auth->remove($auth->getPermission('rbacApiBulkAssignmentIndex'));
-        $auth->remove($auth->getPermission('rbacApiBulkAssignmentAssign'));
-        $auth->remove($auth->getPermission('rbacApiBulkAssignmentRevoke'));
-        $auth->remove($auth->getPermission('rbacApiPermissionViewPath'));
+        $auth->remove($auth->getPermission('rbacWebAssignmentView'));
+        $auth->remove($auth->getPermission('rbacWebAssignmentAssign'));
+        $auth->remove($auth->getPermission('rbacWebAssignmentRevoke'));
+        $auth->remove($auth->getPermission('rbacWebBulkAssignmentIndex'));
+        $auth->remove($auth->getPermission('rbacWebBulkAssignmentAssign'));
+        $auth->remove($auth->getPermission('rbacWebBulkAssignmentRevoke'));
+        $auth->remove($auth->getPermission('rbacWebPermissionViewPath'));
+        $auth->remove($auth->getPermission('rbacWebRoleViewPath'));
 
     }
 }
