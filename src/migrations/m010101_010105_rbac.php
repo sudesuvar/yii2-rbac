@@ -11,10 +11,6 @@ class m010101_010105_rbac extends Migration
         $role = 'admin';
         $admin = (isset($role) && $role != '') ? $auth->getRole($role) : $auth->getRole('admin');
 
-        $auth->remove($auth->getPermission("setRole"));
-        $auth->remove($auth->getPermission("setAssignment"));
-        $auth->remove($auth->getPermission("setPermission"));
-
         $rbacWebAssignmentView = $auth->createPermission('rbacWebAssignmentView');
         $rbacWebAssignmentView->description = 'View rbac assignment';
         $auth->add($rbacWebAssignmentView);
