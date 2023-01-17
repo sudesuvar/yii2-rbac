@@ -66,7 +66,7 @@ class BulkAuthAssignmentHelper
      */
     public static function assignByGroupId($itemName, $groupId)
     {
-        $userIds = Group::findOne(['id' => $groupId])->getUsers()->select('id')->column();
+        $userIds = Group::findOne(['id_group' => $groupId])->getUsers()->select('id_user')->column();
         return static::assignByUserIds($itemName, $userIds);
     }
 
