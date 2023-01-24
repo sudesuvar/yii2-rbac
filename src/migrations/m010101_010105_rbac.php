@@ -7,8 +7,7 @@ class m010101_010105_rbac extends Migration
     {
         $auth = Yii::$app->authManager;
 
-        $settings = yii\helpers\ArrayHelper::map(portalium\site\models\Setting::find()->asArray()->all(), 'name', 'value');
-        $role = 'admin';
+        $role = Yii::$app->settings->getValue('default::role');
         $admin = (isset($role) && $role != '') ? $auth->getRole($role) : $auth->getRole('admin');
 
         $rbacWebAssignmentView = $auth->createPermission('rbacWebAssignmentView');
