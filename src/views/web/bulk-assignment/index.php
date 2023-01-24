@@ -13,11 +13,11 @@ $itemType = null;
 switch ($model->getItem()->type) {
     case 1:
         $itemType = Module::t('Roles');
-        $itemUrl = '/user/auth/role';
+        $itemUrl = '/rbac/role';
         break;
     case 2:
         $itemType = Module::t('Permissions');
-        $itemUrl = '/user/auth/permission';
+        $itemUrl = '/rbac/permission';
         break;
 }
 
