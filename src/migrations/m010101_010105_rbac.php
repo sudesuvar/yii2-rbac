@@ -12,42 +12,42 @@ class m010101_010105_rbac extends Migration
         $admin = (isset($role) && $role != '') ? $auth->getRole($role) : $auth->getRole('admin');
 
         $rbacWebAssignmentView = $auth->createPermission('rbacWebAssignmentView');
-        $rbacWebAssignmentView->description = 'View rbac assignment';
+        $rbacWebAssignmentView->description = 'RBAC Web Assignment View';
         $auth->add($rbacWebAssignmentView);
         $auth->addChild($admin, $rbacWebAssignmentView);
 
         $rbacWebAssignmentAssign = $auth->createPermission('rbacWebAssignmentAssign');
-        $rbacWebAssignmentAssign->description = 'Assign rbac assignment';
+        $rbacWebAssignmentAssign->description = 'RBAC Web Assignment Assign';
         $auth->add($rbacWebAssignmentAssign);
         $auth->addChild($admin, $rbacWebAssignmentAssign);
 
         $rbacWebAssignmentRevoke = $auth->createPermission('rbacWebAssignmentRevoke');
-        $rbacWebAssignmentRevoke->description = 'Revoke rbac assignment';
+        $rbacWebAssignmentRevoke->description = 'RBAC Web Assignment Revoke';
         $auth->add($rbacWebAssignmentRevoke);
         $auth->addChild($admin, $rbacWebAssignmentRevoke);
 
         $rbacWebBulkAssignmentIndex = $auth->createPermission('rbacWebBulkAssignmentIndex');
-        $rbacWebBulkAssignmentIndex->description = 'View bulk assignment';
+        $rbacWebBulkAssignmentIndex->description = 'RBAC Web Bulk Assignment Index';
         $auth->add($rbacWebBulkAssignmentIndex);
         $auth->addChild($admin, $rbacWebBulkAssignmentIndex);
 
         $rbacWebBulkAssignmentAssign = $auth->createPermission('rbacWebBulkAssignmentAssign');
-        $rbacWebBulkAssignmentAssign->description = 'Assign bulk assignment';
+        $rbacWebBulkAssignmentAssign->description = 'RBAC Web Bulk Assignment Assign';
         $auth->add($rbacWebBulkAssignmentAssign);
         $auth->addChild($admin, $rbacWebBulkAssignmentAssign);
 
         $rbacWebBulkAssignmentRevoke = $auth->createPermission('rbacWebBulkAssignmentRevoke');
-        $rbacWebBulkAssignmentRevoke->description = 'Revoke bulk assignment';
+        $rbacWebBulkAssignmentRevoke->description = 'RBAC Web Bulk Assignment Revoke';
         $auth->add($rbacWebBulkAssignmentRevoke);
         $auth->addChild($admin, $rbacWebBulkAssignmentRevoke);
 
         $rbacWebPermissionViewPath = $auth->createPermission('rbacWebPermissionViewPath');
-        $rbacWebPermissionViewPath->description = 'View permission path';
+        $rbacWebPermissionViewPath->description = 'RBAC Web Permission View Path';
         $auth->add($rbacWebPermissionViewPath);
         $auth->addChild($admin, $rbacWebPermissionViewPath);
 
         $rbacWebRoleViewPath = $auth->createPermission('rbacWebRoleViewPath');
-        $rbacWebRoleViewPath->description = 'View role path';
+        $rbacWebRoleViewPath->description = 'View RBAC Web Role View Path';
         $auth->add($rbacWebRoleViewPath);
         $auth->addChild($admin, $rbacWebRoleViewPath);
 
