@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use portalium\rbac\Module;
 use portalium\theme\widgets\GridView;
 use portalium\theme\widgets\Panel;
+use portalium\theme\widgets\ActionColumn;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -66,7 +67,7 @@ GridView::widget([
             'label' => Module::t('Description'),
         ],
         [
-            'class' => 'yii\grid\ActionColumn',
+            'class' => ActionColumn::class,
             'template' => '{view} {update} {bulkAssignment} {delete}',
             'buttons' => $buttonsKeyArray,
         ],
