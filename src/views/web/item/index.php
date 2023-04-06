@@ -1,9 +1,10 @@
 <?php
 
+use yii\helpers\Url;
 use yii\helpers\Html;
 use portalium\rbac\Module;
-use portalium\theme\widgets\GridView;
 use portalium\theme\widgets\Panel;
+use portalium\theme\widgets\GridView;
 use portalium\theme\widgets\ActionColumn;
 
 /* @var $this yii\web\View */
@@ -42,9 +43,9 @@ if ($this->context->getType() === 2) {
 
 $buttonsKeyArray['bulkAssignment'] = function ($url, $model) {
     return Html::a(
-        Html::tag('i', '', ['class' => 'fa fa-fw fa-cog']),
-        ['/rbac/bulk-assignment', 'id' => $model->name],
-        ['title' => Module::t('Bulk Assignment')]
+        Html::tag('i', '', ['class' => 'fa fa-fw fa-cog']), 
+        Url::toRoute(['/rbac/bulk-assignment', 'id' => $model->name]),
+        ['class' => 'btn btn-primary btn-xs', 'style' => 'padding: 2px 9px 2px 9px;'] 
     );
 };
 
