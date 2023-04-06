@@ -22,7 +22,6 @@ use portalium\web\Controller as WebController;
  */
 class BaseAuthItemController extends WebController
 {
-
     /**
      * @inheritdoc
      */
@@ -38,6 +37,23 @@ class BaseAuthItemController extends WebController
                 ],
             ],
         ];
+    }
+
+    public function beforeAction($action)
+    {
+        Yii::$app->view->registerJs(
+            "
+            $.ajaxSetup({
+                beforeSend: function(xhr){
+                    this.data += '&' + $.param({
+                        '" . Yii::$app->request->csrfParam . "': '" . Yii::$app->request->getCsrfToken() . "'
+                    });
+                }
+                });
+            "
+        );
+
+        return parent::beforeAction($action);
     }
 
     /**
