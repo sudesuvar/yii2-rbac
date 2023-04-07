@@ -31,24 +31,6 @@ $optgroupLabels = Json::htmlEncode([
 
 $this->registerJs("var _opts = {$opts};");
 $this->registerJs("var optgroupLabels = {$optgroupLabels};");
-$this->registerJs(
-    //before ajax
-    '
-    console.log("before ajax");
-        $.ajaxSetup({
-            beforeSend: function(xhr, setting) {
-            $("#output").val(`
-                beforeSend: function(xhr, setting) {
-                    //add csrf token to data
-                    setting.data += "&_csrf-web=' . Yii::$app->request->getCsrfToken() . '";
-                    
-                }
-            `);
-            // $("#app").append(setting);
-            }
-        });
-    '
-);
 $this->registerJs($this->render('_script.js'));
 $animateIcon = ' <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>';
 ?>
