@@ -84,19 +84,22 @@ $animateIcon = ' <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate
         <select multiple size="20" class="form-control list" data-target="available"></select>
     </div>
     <div class="col-sm-2" style="text-align: center;">
-        <br><br>
-        <?=Html::a('&gt;&gt;' . $animateIcon, ['assign', 'id' => $model->name], [
+    <div class="text-center" style="position: relative; top: 50%;">
+        <div class="btn-group-vertical" style="transform: translateY(-50%);">
+        <?=Html::a(Html::tag('i', '', ['class' => 'fa fa-arrow-right'])  . $animateIcon, ['assign', 'id' => $model->name], [
     'class' => 'btn btn-success btn-assign',
     'data-target' => 'available',
     'title' => Module::t('Assign'),
 ]);
-?><br><br>
-        <?=Html::a('&lt;&lt;' . $animateIcon, ['remove', 'id' => $model->name], [
+?>
+        <?=Html::a(Html::tag('i', '', ['class' => 'fa fa-arrow-left'])  . $animateIcon, ['remove', 'id' => $model->name], [
     'class' => 'btn btn-danger btn-assign',
     'data-target' => 'assigned',
     'title' => Module::t('Remove'),
 ]);
 ?>
+        </div>
+    </div>
     </div>
     <div class="col-sm-5">
         <input class="form-control search" data-target="assigned" placeholder="<?=Module::t('Search for assigned');?>">
