@@ -7,10 +7,9 @@ use yii\base\Model;
 use yii\helpers\Url;
 use yii\rbac\Item;
 use portalium\user\models\User;
-use portalium\user\Module;
+use portalium\rbac\Module;
+use portalium\base\Event;
 
-//use portalium\user\models\User;
-//use portalium\user\Module;
 
 /**
  * This is the model class for table "auth_item".
@@ -83,6 +82,8 @@ class AuthItem extends Model
             [['name'], 'string', 'max' => 64],
         ];
     }
+
+
 
     /**
      * Check role is unique
@@ -318,4 +319,5 @@ class AuthItem extends Model
 
         return $result[$type];
     }
+
 }
