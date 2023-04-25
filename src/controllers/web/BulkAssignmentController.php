@@ -37,7 +37,6 @@ class BulkAssignmentController extends WebController
 
     public function beforeAction($action)
     {
-        
         Yii::$app->view->registerJs(
             "
             $.ajaxSetup({
