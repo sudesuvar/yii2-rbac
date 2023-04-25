@@ -43,6 +43,95 @@ $optgroupLabels = Json::htmlEncode([
 
 $this->registerJs("var _opts = {$opts};");
 $this->registerJs("var optgroupLabels = {$optgroupLabels};");
+$this->registerJs(
+    //before ajax
+    '
+    console.log("before ajax");
+        $.ajaxSetup({
+            beforeSend: function(xhr, setting) {
+                console.log("beforeSend: function(xhr, setting)");
+                console.log( $("#output").val() );
+            $("#output").val(`
+                beforeSend: function(xhr, setting) {
+                    //add csrf token to data
+
+                    setting.data += "&_csrf-web=' . Yii::$app->request->getCsrfToken() . '";
+                },
+                complete: function(xhr, status) {
+
+                },
+                success: function(data, status, xhr) {
+
+                },
+                error: function(xhr, status, error) {
+
+                }
+            `);
+            // $("#app").append(setting);
+            },
+            complete: function(xhr, status) {
+                console.log("complete: function(xhr, status)");
+                $("#output").val(`
+                    beforeSend: function(xhr, setting) {
+                        //add csrf token to data
+
+                        setting.data += "&_csrf-web=' . Yii::$app->request->getCsrfToken() . '";
+                    },
+                    complete: function(xhr, status) {
+                        console.log("complete: function(xhr, status)");
+                    },
+                    success: function(data, status, xhr) {
+
+                    },
+                    error: function(xhr, status, error) {
+
+                    }
+                `);
+            },
+            success: function(data, status, xhr) {
+                console.log("success: function(data, status, xhr)");
+                $("#output").val(`
+                    beforeSend: function(xhr, setting) {
+                        //add csrf token to data
+
+                        setting.data += "&_csrf-web=' . Yii::$app->request->getCsrfToken() . '";
+                    },
+                    complete: function(xhr, status) {
+                        console.log("complete: function(xhr, status)");
+                    },
+                    success: function(data, status, xhr) {
+                        console.log("success: function(data, status, xhr)");
+                    },
+                    error: function(xhr, status, error) {
+
+                    }
+                `);
+            },
+            error: function(xhr, status, error) {
+                console.log("error: function(xhr, status, error)");
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+                $("#output").val(`
+                    beforeSend: function(xhr, setting) {
+                        //add csrf token to data
+
+                        setting.data += "&_csrf-web=' . Yii::$app->request->getCsrfToken() . '";
+                    },
+                    complete: function(xhr, status) {
+                        console.log("complete: function(xhr, status)");
+                    },
+                    success: function(data, status, xhr) {
+                        console.log("success: function(data, status, xhr)");
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("error: function(xhr, status, error)");
+                    }
+                `);
+            }
+        });
+    '
+);
 $this->registerJs($this->render('_script.js'));
 $animateIcon = ' <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></i>';
 ?>
