@@ -11,6 +11,8 @@ use yii\rbac\Item;
 use yii\web\NotFoundHttpException;
 use portalium\rbac\models\AuthItem;
 use portalium\rbac\models\AuthItemSearch;
+use portalium\rbac\Module;
+use portalium\base\Event;
 use portalium\web\Controller as WebController;
 
 /**
@@ -22,6 +24,8 @@ use portalium\web\Controller as WebController;
  */
 class BaseAuthItemController extends WebController
 {
+    const EVENT_AFTER_DELETE = 'afterDelete';
+
     /**
      * @inheritdoc
      */
@@ -80,11 +84,32 @@ class BaseAuthItemController extends WebController
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+        $oldModel = clone $model;
+        if ($model->load($this->request->post())) {
+            $this->updateSettingAssignableRoles($model, $oldModel);
+            Event::trigger(Yii::$app->getModules(), Module::EVENT_ITEM_UPDATE, new Event(['payload' => ['item' => $model, 'oldItem' => $oldModel]]));
+            if($model->save()) {
+                return $this->redirect(['view', 'id' => $model->name]);
+            }
         }
-
         return $this->render('update', ['model' => $model]);
+    }
+
+    private function updateSettingAssignableRoles($model, $oldModel)
+    {
+        $setting = Yii::$app->setting->getSetting('workspace::available_roles');
+        if ($setting) {
+            $modules = json_decode($setting->value);
+            foreach ($modules as $key => $value) {
+                if (in_array($oldModel->name, $value)) {
+                    $value = array_diff($value, [$oldModel->name]);
+                    $value[] = $model->name;
+                    $modules->$key = $value;
+                }
+            }
+            $setting->value = json_encode($modules);
+            $setting->save();
+        }
     }
 
     /**
@@ -96,8 +121,27 @@ class BaseAuthItemController extends WebController
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
+        Event::trigger(Yii::$app->getModules(), Module::EVENT_ITEM_DELETE, new Event(['payload' => ['item' => $model]]));
+        $this->deleteSettingAssignableRoles($model);
         Yii::$app->authManager->remove($model->item);
+
         return $this->redirect(['index']);
+    }
+
+    private function deleteSettingAssignableRoles($model)
+    {
+        $setting = Yii::$app->setting->getSetting('workspace::available_roles');
+        if ($setting) {
+            $modules = json_decode($setting->value);
+            foreach ($modules as $key => $value) {
+                if (in_array($model->name, $value)) {
+                    $value = array_diff($value, [$model->name]);
+                    $modules->$key = $value;
+                }
+            }
+            $setting->value = json_encode($modules);
+            $setting->save();
+        }
     }
 
     /**

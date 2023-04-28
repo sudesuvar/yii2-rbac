@@ -5,6 +5,9 @@ namespace portalium\rbac;
 class Module extends \portalium\base\Module
 
 {
+    const EVENT_ITEM_DELETE = 'afterDelete';
+    const EVENT_ITEM_UPDATE = 'afterUpdate';
+
     public static $description = 'RBAC Management Module';
     public static $name = 'RBAC';
 
@@ -49,4 +52,5 @@ class Module extends \portalium\base\Module
     {
         return parent::coreT('rbac', $message, $params);
     }
+
 }
