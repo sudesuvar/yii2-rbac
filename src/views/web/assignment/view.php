@@ -48,12 +48,12 @@ $animateIcon = ' <i class="glyphicon glyphicon-refresh glyphicon-refresh-animate
         <div class="col-sm-2" style="text-align: center">
             <div class="text-center" style="position: relative; top: 50%;">
                 <div class="btn-group-vertical" style="transform: translateY(-50%);">
-                    <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-arrow-left']) . $animateIcon, ['assign', 'id' => (string)$model->id], [
+                    <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-arrow-right']) . $animateIcon, ['assign', 'id' => (string)$model->id], [
                         'class' => 'btn btn-success btn-assign',
                         'data-target' => 'available',
                         'title' => Module::t('Assign'),
                     ]); ?>
-                    <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-arrow-right']) . $animateIcon, ['revoke', 'id' => (string)$model->id], [
+                    <?= Html::a(Html::tag('i', '', ['class' => 'fa fa-arrow-left']) . $animateIcon, ['revoke', 'id' => (string)$model->id], [
                         'class' => 'btn btn-danger btn-assign',
                         'data-target' => 'assigned',
                         'title' => Module::t('Remove'),
