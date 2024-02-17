@@ -2,9 +2,10 @@
 
 namespace portalium\rbac\models;
 
+use portalium\data\ArrayDataProvider;
 use Yii;
 use yii\base\Model;
-use yii\data\ArrayDataProvider;
+
 use yii\rbac\Item;
 
 /**
@@ -54,7 +55,7 @@ class AuthItemSearch extends Model
     /**
      * Search AuthItem
      * @param array $params
-     * @return \yii\data\ActiveDataProvider|\yii\data\ArrayDataProvider
+     * @return \portalium\data\ActiveDataProvider|\yii\data\ArrayDataProvider
      */
     public function search($params)
     {

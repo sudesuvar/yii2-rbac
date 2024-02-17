@@ -68,7 +68,7 @@ class BaseAuthItemController extends WebController
     {
         $searchModel = new AuthItemSearch(['type' => $this->type]);
         $dataProvider = $searchModel->search($this->request->getQueryParams());
-
+        // $dataProvider->pagination->pageSize = 24;
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel,
