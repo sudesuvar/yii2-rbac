@@ -54,7 +54,7 @@ $buttonsKeyArray['bulkAssignment'] = function ($url, $model) {
 GridView::widget([
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
-    'layout' => '{items}{pager}{summary}',
+    'layout' => '{items}{summary}{pagesizer}{pager}',
     'columns' => [
         [
             'class' => 'yii\grid\SerialColumn',
